@@ -1,4 +1,4 @@
 public interface ICommandFactory {
-    DrinkCommand newDrinkCommand(String type, int sugar);
-    MessageCommand newMessageCommand(String content);
+    ICommand newDrinkCommand(String type, int sugar, double amount);
+    ICommand newMessageCommand(String content);
 }
