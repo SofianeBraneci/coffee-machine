@@ -70,4 +70,54 @@ public class TestCases {
         Assert.assertEquals("M:0.5", command.getCommand());
     }
 
+    @Test
+    public void testCommandsWithNoSugarCorrectAmountHot(){
+
+        ICommand command = factory.newExtraHotDrinkCommand("T", 0, 0.4);
+        Assert.assertEquals("Th::", command.getCommand());
+        Assert.assertTrue(command instanceof ExtraHotDrinkCommand);
+        command = factory.newExtraHotDrinkCommand("C", 0, 0.6);
+        Assert.assertEquals("Ch::", command.getCommand());
+        Assert.assertTrue(command instanceof ExtraHotDrinkCommand);
+        command = factory.newExtraHotDrinkCommand("H", 0,0.5);
+        Assert.assertEquals("Hh::", command.getCommand());
+        Assert.assertTrue(command instanceof ExtraHotDrinkCommand);
+    }
+
+    @Test
+    public void testCommandsWithOneSugarCorrectAmountHot(){
+
+        ICommand command = factory.newExtraHotDrinkCommand("T", 1, 0.4);
+        Assert.assertEquals("Th:1:0", command.getCommand());
+        Assert.assertTrue(command instanceof ExtraHotDrinkCommand);
+        command = factory.newExtraHotDrinkCommand("C", 1, 0.6);
+        Assert.assertEquals("Ch:1:0", command.getCommand());
+        Assert.assertTrue(command instanceof ExtraHotDrinkCommand);
+        command = factory.newExtraHotDrinkCommand("H", 1,0.5);
+        Assert.assertEquals("Hh:1:0", command.getCommand());
+        Assert.assertTrue(command instanceof ExtraHotDrinkCommand);
+    }
+
+    @Test
+    public void testCommandsWithOneSugarNotCorrectAmountHot(){
+
+        ICommand command = factory.newExtraHotDrinkCommand("T", 1, 0.1);
+        Assert.assertEquals("M:0.3", command.getCommand());
+        Assert.assertTrue(command instanceof MessageCommand);
+        command = factory.newExtraHotDrinkCommand("C", 1, 0.1);
+        Assert.assertEquals("M:0.5", command.getCommand());
+        Assert.assertTrue(command instanceof MessageCommand);
+        command = factory.newExtraHotDrinkCommand("H", 1,0.0);
+        Assert.assertEquals("M:0.5", command.getCommand());
+        Assert.assertTrue(command instanceof MessageCommand);
+    }
+
+
+    @Test
+    public void testJuiceCorrectAmount(){
+
+        ICommand command = factory.newJuiceCommand("O", 0.6);
+        Assert.assertEquals("O::", command.getCommand());
+        Assert.assertTrue(command instanceof JuiceCommand);
+    }
 }

@@ -9,6 +9,8 @@ public class DrinkCommand extends AbstractCommand {
     @Override
     public String getCommand() {
         StringBuilder builder = new StringBuilder(getType());
+
+        if (isHot()) builder.append("h");
         builder.append(":");
         if(sugar > 0){
             builder.append(sugar).append(":").append("0");
@@ -16,4 +18,10 @@ public class DrinkCommand extends AbstractCommand {
 
         return builder.toString();
     }
+
+    public int getSugar() {
+        return sugar;
+    }
+
+    public boolean isHot(){return  false;}
 }
